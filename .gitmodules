@@ -1,0 +1,6 @@
+[submodule "Project/geodesic"]
+	path = Project/geodesic
+	url = https://github.com/PierceLBrooks/geodesic_grid_dvr.git
+[submodule "Buildster"]
+	path = Buildster
+	url = https://github.com/PierceLBrooks/Buildster.git
