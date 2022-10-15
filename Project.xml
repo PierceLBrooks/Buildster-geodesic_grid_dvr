@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildster directory="build" distribution="../Distribution">
+  <project directory="../Project">
+    <dependencies>
+			<dependency>
+				<label>glew</label>
+				<subpath>build/cmake/build</subpath>
+				<remote>
+					<url>https://github.com/nigels-com/glew.git</url>
+					<git_repo>
+						<branch>master</branch>
+						<credentials>
+							<username>username</username>
+							<password>password</password>
+						</credentials>
+					</git_repo>
+				</remote>
+				<build>
+					<arguments></arguments>
+					<cmake>
+						<generator>
+							<switch id="BUILDSTER_OS">
+								<case check="Windows">MinGW Makefiles</case>
+								<case check="Linux">Unix Makefiles</case>
+								<case check="Darwin">Xcode</case>
+								<default><quit></quit></default>
+							</switch>
+						</generator>
+						<source>..</source>
+					</cmake>
+				</build>
+				<exports>
+					<export type="all">
+						<key>GLEW_ROOT_DIR</key>
+						<value><install></install></value>
+					</export>
+				</exports>
+				<imports></imports>
+			</dependency>
+			<dependency>
+				<label>glut</label>
+				<subpath>build</subpath>
+				<remote>
+					<url>https://github.com/FreeGLUTProject/freeglut.git</url>
+					<git_repo>
+						<branch>master</branch>
+						<credentials>
+							<username>username</username>
+							<password>password</password>
+						</credentials>
+					</git_repo>
+				</remote>
+				<build>
+					<arguments></arguments>
+					<cmake>
+						<generator>
+							<switch id="BUILDSTER_OS">
+								<case check="Windows">MinGW Makefiles</case>
+								<case check="Linux">Unix Makefiles</case>
+								<case check="Darwin">Xcode</case>
+								<default><quit></quit></default>
+							</switch>
+						</generator>
+						<source>..</source>
+					</cmake>
+				</build>
+				<exports>
+					<export type="all">
+						<key>GLUT_ROOT_DIR</key>
+						<value><install></install></value>
+					</export>
+				</exports>
+				<imports></imports>
+			</dependency>
+			<dependency>
+				<label>davinci</label>
+				<subpath>build</subpath>
+				<remote>
+					<url>https://github.com/stonexjr/davinci.git</url>
+					<git_repo>
+						<branch>master</branch>
+						<credentials>
+							<username>username</username>
+							<password>password</password>
+						</credentials>
+					</git_repo>
+				</remote>
+				<build>
+					<arguments></arguments>
+					<cmake>
+						<generator>
+							<switch id="BUILDSTER_OS">
+								<case check="Windows">MinGW Makefiles</case>
+								<case check="Linux">Unix Makefiles</case>
+								<case check="Darwin">Xcode</case>
+								<default><quit></quit></default>
+							</switch>
+						</generator>
+						<source>..</source>
+					</cmake>
+				</build>
+				<exports>
+					<export type="all">
+						<key>DAVINCI_ROOT_DIR</key>
+						<value><install></install></value>
+					</export>
+				</exports>
+				<imports>
+          <import>glew</import>
+          <import>glut</import>
+        </imports>
+			</dependency>
+			<dependency>
+				<label>hdf</label>
+				<subpath>build</subpath>
+				<remote>
+					<url>https://github.com/HDFGroup/hdf5.git</url>
+					<git_repo>
+						<branch>master</branch>
+						<credentials>
+							<username>username</username>
+							<password>password</password>
+						</credentials>
+					</git_repo>
+				</remote>
+				<build>
+					<arguments>
+            <argument>-DBUILD_SHARED_LIBS=OFF</argument>
+          </arguments>
+					<cmake>
+						<generator>
+							<switch id="BUILDSTER_OS">
+								<case check="Windows">MinGW Makefiles</case>
+								<case check="Linux">Unix Makefiles</case>
+								<case check="Darwin">Xcode</case>
+								<default><quit></quit></default>
+							</switch>
+						</generator>
+						<source>..</source>
+					</cmake>
+				</build>
+				<exports>
+					<export type="all">
+						<key>HDF5_ROOT_DIR</key>
+						<value><install></install></value>
+					</export>
+				</exports>
+				<imports></imports>
+			</dependency>
+			<dependency>
+				<label>netcdf</label>
+				<subpath>build</subpath>
+				<remote>
+					<url>https://github.com/Unidata/netcdf-c.git</url>
+					<git_repo>
+						<branch>main</branch>
+						<credentials>
+							<username>username</username>
+							<password>password</password>
+						</credentials>
+					</git_repo>
+				</remote>
+				<build>
+					<arguments></arguments>
+					<cmake>
+						<generator>
+							<switch id="BUILDSTER_OS">
+								<case check="Windows">MinGW Makefiles</case>
+								<case check="Linux">Unix Makefiles</case>
+								<case check="Darwin">Xcode</case>
+								<default><quit></quit></default>
+							</switch>
+						</generator>
+						<source>..</source>
+					</cmake>
+				</build>
+				<exports>
+					<export type="all">
+						<key>NETCDF_ROOT_DIR</key>
+						<value><install></install></value>
+					</export>
+				</exports>
+				<imports>
+          <import>hdf</import>
+        </imports>
+			</dependency>
+    </dependencies>
+    <targets>
+      <target type="executable">
+        <label>geodesic</label>
+        <generator>
+          <switch id="BUILDSTER_OS">
+            <case check="Windows">MinGW Makefiles</case>
+            <case check="Linux">Unix Makefiles</case>
+            <case check="Darwin">Xcode</case>
+            <default><quit></quit></default>
+          </switch>
+        </generator>
+        <definitions></definitions>
+        <links></links>
+        <imports>
+          <import>glew</import>
+          <import>glut</import>
+          <import>davinci</import>
+          <import>netcdf</import>
+        </imports>
+      </target>
+    </targets>
+  </project>
+</buildster>
