@@ -144,9 +144,9 @@
 				<label>hdf</label>
 				<subpath>build</subpath>
 				<remote>
-					<url>https://github.com/HDFGroup/hdf5.git</url>
+					<url>https://github.com/PierceLBrooks/hdf5.git</url>
 					<git_repo>
-						<branch>master</branch>
+						<branch>pierce</branch>
 						<credentials>
 							<username>username</username>
 							<password>password</password>
@@ -156,6 +156,12 @@
 				<build>
 					<arguments>
             <argument>-DBUILD_SHARED_LIBS=OFF</argument>
+            <argument>-DHDF5_ENABLE_Z_LIB_SUPPORT=ON</argument>
+            <argument>-DHDF5_ALLOW_EXTERNAL_SUPPORT=GIT</argument>
+            <argument>-DZLIB_USE_EXTERNAL=ON</argument>
+            <argument>-DZLIB_URL=https://github.com/madler/zlib.git</argument>
+            <argument>-DZLIB_BRANCH=master</argument>
+            <argument>-DZLIB_LIB_NAME=zlibstatic</argument>
           </arguments>
 					<cmake>
             <natives>
@@ -181,19 +187,119 @@
 				</build>
 				<exports>
 					<export type="all">
-						<key>HDF5_ROOT_DIR</key>
+						<key>HDF5_ROOT</key>
 						<value><install></install></value>
+					</export>
+					<export type="headers">
+						<key>HDF5_INCLUDE_DIR</key>
+						<value><install></install>/include</value>
 					</export>
 				</exports>
 				<imports></imports>
 			</dependency>
+      <dependency>
+        <label>zlib</label>
+        <subpath>build</subpath>
+        <remote>
+          <url>https://github.com/madler/zlib.git</url>
+          <git_repo>
+            <branch>master</branch>
+            <credentials>
+              <username>username</username>
+              <password>password</password>
+            </credentials>
+          </git_repo>
+        </remote>
+        <build>
+          <arguments></arguments>
+          <cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
+            <generator>
+              <switch id="BUILDSTER_OS">
+                <case check="Windows">MinGW Makefiles</case>
+                <case check="Linux">Unix Makefiles</case>
+                <case check="Darwin">Xcode</case>
+                <default><quit></quit></default>
+              </switch>
+            </generator>
+            <source>..</source>
+          </cmake>
+        </build>
+        <exports>
+          <export type="all">
+            <key>ZLIB_ROOT</key>
+            <value><install></install></value>
+          </export>
+        </exports>
+        <imports></imports>
+      </dependency>
+      <dependency>
+        <label>curl</label>
+        <subpath>build</subpath>
+        <remote>
+          <url>https://github.com/curl/curl.git</url>
+          <git_repo>
+            <branch>master</branch>
+            <credentials>
+              <username>username</username>
+              <password>password</password>
+            </credentials>
+          </git_repo>
+        </remote>
+        <build>
+          <arguments></arguments>
+          <cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
+            <generator>
+              <switch id="BUILDSTER_OS">
+                <case check="Windows">MinGW Makefiles</case>
+                <case check="Linux">Unix Makefiles</case>
+                <case check="Darwin">Xcode</case>
+                <default><quit></quit></default>
+              </switch>
+            </generator>
+            <source>..</source>
+          </cmake>
+        </build>
+        <exports>
+          <export type="all">
+            <key>CURL_ROOT</key>
+            <value><install></install></value>
+          </export>
+          <export type="headers">
+            <key>CURL_INCLUDE_DIRS</key>
+            <value><install></install>/include</value>
+          </export>
+        </exports>
+        <imports>
+          <import>zlib</import>
+        </imports>
+      </dependency>
 			<dependency>
 				<label>netcdf</label>
 				<subpath>build</subpath>
 				<remote>
-					<url>https://github.com/Unidata/netcdf-c.git</url>
+					<url>https://github.com/PierceLBrooks/netcdf-c.git</url>
 					<git_repo>
-						<branch>main</branch>
+						<branch>pierce</branch>
 						<credentials>
 							<username>username</username>
 							<password>password</password>
@@ -231,6 +337,8 @@
 					</export>
 				</exports>
 				<imports>
+          <import>zlib</import>
+          <import>curl</import>
           <import>hdf</import>
         </imports>
 			</dependency>
