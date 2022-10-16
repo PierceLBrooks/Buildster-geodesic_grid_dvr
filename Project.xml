@@ -6,7 +6,7 @@
 				<label>glew</label>
 				<subpath>build/cmake/build</subpath>
 				<remote>
-					<url>https://github.com/nigels-com/glew.git</url>
+					<url>https://github.com/Perlmint/glew-cmake.git</url>
 					<git_repo>
 						<branch>master</branch>
 						<credentials>
@@ -18,6 +18,16 @@
 				<build>
 					<arguments></arguments>
 					<cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
 						<generator>
 							<switch id="BUILDSTER_OS">
 								<case check="Windows">MinGW Makefiles</case>
@@ -26,7 +36,7 @@
 								<default><quit></quit></default>
 							</switch>
 						</generator>
-						<source>..</source>
+						<source>../../..</source>
 					</cmake>
 				</build>
 				<exports>
@@ -53,6 +63,16 @@
 				<build>
 					<arguments></arguments>
 					<cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
 						<generator>
 							<switch id="BUILDSTER_OS">
 								<case check="Windows">MinGW Makefiles</case>
@@ -66,7 +86,7 @@
 				</build>
 				<exports>
 					<export type="all">
-						<key>GLUT_ROOT_DIR</key>
+						<key>FREEGLUT_ROOT_DIR</key>
 						<value><install></install></value>
 					</export>
 				</exports>
@@ -88,6 +108,16 @@
 				<build>
 					<arguments></arguments>
 					<cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
 						<generator>
 							<switch id="BUILDSTER_OS">
 								<case check="Windows">MinGW Makefiles</case>
@@ -128,6 +158,16 @@
             <argument>-DBUILD_SHARED_LIBS=OFF</argument>
           </arguments>
 					<cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
 						<generator>
 							<switch id="BUILDSTER_OS">
 								<case check="Windows">MinGW Makefiles</case>
@@ -163,6 +203,16 @@
 				<build>
 					<arguments></arguments>
 					<cmake>
+            <natives>
+              <native>
+                <switch id="BUILDSTER_OS">
+                  <case check="Windows">-j<cores></cores></case>
+                  <case check="Linux">-j<cores></cores></case>
+                  <case check="Darwin"></case>
+                  <default><quit></quit></default>
+                </switch>
+              </native>
+            </natives>
 						<generator>
 							<switch id="BUILDSTER_OS">
 								<case check="Windows">MinGW Makefiles</case>
@@ -188,6 +238,16 @@
     <targets>
       <target type="executable">
         <label>geodesic</label>
+        <natives>
+          <native>
+            <switch id="BUILDSTER_OS">
+              <case check="Windows">-j<cores></cores></case>
+              <case check="Linux">-j<cores></cores></case>
+              <case check="Darwin"></case>
+              <default><quit></quit></default>
+            </switch>
+          </native>
+        </natives>
         <generator>
           <switch id="BUILDSTER_OS">
             <case check="Windows">MinGW Makefiles</case>
